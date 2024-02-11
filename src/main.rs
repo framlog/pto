@@ -37,7 +37,8 @@ struct Record {
 
 impl Record {
     fn adjust(&mut self, budget: f64) -> Result<()> {
-        anyhow::ensure!(self.year_bonus >= budget, "budget is too large");
+        let budget = self.year_bonus.min(budget);
+        anyhow::ensure!(budget > 0.0, "budget is invalid");
         self.year_bonus -= budget;
         self.movement += budget;
         Ok(())
