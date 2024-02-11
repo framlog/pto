@@ -1,0 +1,58 @@
+[[salary.rule]]
+bound = 36000
+ratio = 0.003
+
+[[salary.rule]]
+bound = 144000
+ratio = 0.1
+
+[[salary.rule]]
+bound = 300000 
+ratio = 0.2
+
+[[salary.rule]]
+bound = 420000
+ratio = 0.25
+
+[[salary.rule]]
+bound = 660000
+ratio = 0.3
+
+[[salary.rule]]
+bound = 960000
+ratio = 0.35
+
+[[salary.rule]]
+# i32::MAX
+bound = 2147483647
+ratio = 0.45
+
+[[year_bonus.rule]]
+bound = 3000
+ratio = 0.003
+
+[[year_bonus.rule]]
+bound = 12000 
+ratio = 0.1
+
+[[year_bonus.rule]]
+bound = 25000 
+ratio = 0.2
+
+[[year_bonus.rule]]
+bound = 35000
+ratio = 0.25
+
+[[year_bonus.rule]]
+bound = 55000 
+ratio = 0.3
+
+[[year_bonus.rule]]
+bound = 80000
+ratio = 0.35
+
+[[year_bonus.rule]]
+# i32:MAX
+bound = 2147483647
+ratio = 0.45
+

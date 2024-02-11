@@ -1,0 +1,10 @@
+[package]
+name = "pto"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.79"
+clap = { version = "4.5.0", features = ["derive"] }
+tokio = { version = "1.36", features = ["full"] }
+toml = "0.8.10"
