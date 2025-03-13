@@ -10,7 +10,7 @@ use clap::Parser;
 #[derive(Parser)]
 struct Args {
     /// Input your case in a comma delimited format: monthly_salary,monthly_tax_deduction,
-    /// year_bonus.
+    /// year_bonus,personal_pension.
     #[arg(short, long, value_parser=parse_record)]
     record: Record,
     #[arg(short, long, value_name = "FILE")]
@@ -23,6 +23,7 @@ fn parse_record(arg: &str) -> Result<Record> {
         monthly_salary: tokens[0],
         monthly_tax_deduction: tokens[1],
         year_bonus: tokens[2],
+        personal_pension: tokens.get(3).cloned().unwrap_or(0.0),
         movement: 0.0,
     })
 }
@@ -32,6 +33,7 @@ struct Record {
     monthly_salary: f64,
     monthly_tax_deduction: f64,
     year_bonus: f64,
+    personal_pension: f64,
     movement: f64,
 }
 
@@ -104,7 +106,10 @@ impl TaxConfig {
     /// Caluculate the tax for the given record. Return tax for salary and tax for year bouns in
     /// tuple format.
     fn calc(&self, r: &Record) -> Tax {
-        let total_salary = r.movement + 0f64.max(r.monthly_salary - r.monthly_tax_deduction) * 12.0;
+        let total_salary = ((r.movement
+            + 0f64.max(r.monthly_salary - r.monthly_tax_deduction) * 12.0)
+            - r.personal_pension)
+            .max(0.0);
         let mut salary_tax = 0.0;
         let mut last = 0.0;
         for (rb, ratio) in &self.salary {
